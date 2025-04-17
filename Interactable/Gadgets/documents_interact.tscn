@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c88jt4xrouc5i"]
+
+[ext_resource type="Script" path="res://Interactable/interactable.gd" id="1_isxfa"]
+[ext_resource type="Texture2D" uid="uid://cdb2mu5lcof6w" path="res://Assets/Interactables/StudyRoom/Documents.PNG" id="2_ixw6o"]
+[ext_resource type="PackedScene" uid="uid://nsxvwnpbg68s" path="res://Items/Gadgets/documents_item.tscn" id="3_g1thw"]
+
+[node name="DocumentsInteractible" type="Area2D" node_paths=PackedStringArray("item")]
+script = ExtResource("1_isxfa")
+item = NodePath("DocumentsItem")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-78.8587, 194.121)
+scale = Vector2(0.859136, 0.682409)
+polygon = PackedVector2Array(-62, -63, 63, -64, 63, 64, -64, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ixw6o")
+
+[node name="DocumentsItem" parent="." instance=ExtResource("3_g1thw")]
+visible = false
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

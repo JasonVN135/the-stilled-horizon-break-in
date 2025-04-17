@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://tk7ls535b5rt"]
+
+[ext_resource type="Script" path="res://Rooms/study_room.gd" id="1_qgh61"]
+[ext_resource type="Texture2D" uid="uid://biv7qrc7e1jyf" path="res://Assets/backgrounds/Level3BottomLayer.PNG" id="2_8rrjd"]
+[ext_resource type="Texture2D" uid="uid://dv1exhejwur5a" path="res://Assets/interactables/StudyRoom/Door.PNG" id="3_bu4ba"]
+[ext_resource type="Texture2D" uid="uid://ba154600hbsea" path="res://Assets/interactables/StudyRoom/Safe.PNG" id="4_fxdev"]
+[ext_resource type="PackedScene" uid="uid://sn6i4oy70lko" path="res://Interactable/Gadgets/time_suspension_sphere_interact.tscn" id="4_w6g86"]
+[ext_resource type="PackedScene" uid="uid://c88jt4xrouc5i" path="res://Interactable/Gadgets/documents_interact.tscn" id="5_athqg"]
+[ext_resource type="PackedScene" uid="uid://4vhyaw2dbdgf" path="res://Interactable/Notes/note_1_interact.tscn" id="7_v25af"]
+[ext_resource type="AudioStream" uid="uid://bo2h73e1tcg6q" path="res://Assets/Audio/Door.mp3" id="8_bf8cn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ip0a4"]
+size = Vector2(176, 496)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8ijh"]
+size = Vector2(140, 144)
+
+[node name="StudyRoom" type="Node2D"]
+script = ExtResource("1_qgh61")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_8rrjd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="DoorToBedroom" type="Area2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToBedroom"]
+position = Vector2(-808, 68)
+shape = SubResource("RectangleShape2D_ip0a4")
+
+[node name="Sprite2D" type="Sprite2D" parent="DoorToBedroom"]
+texture = ExtResource("3_bu4ba")
+
+[node name="TimeSuspensionSphereInteract" parent="." instance=ExtResource("4_w6g86")]
+position = Vector2(960, 540)
+
+[node name="LookAtSafe" type="Area2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LookAtSafe"]
+position = Vector2(728, 148)
+shape = SubResource("RectangleShape2D_b8ijh")
+
+[node name="Sprite2D" type="Sprite2D" parent="LookAtSafe"]
+texture = ExtResource("4_fxdev")
+
+[node name="DocumentsInteract" parent="." instance=ExtResource("5_athqg")]
+position = Vector2(960, 540)
+
+[node name="Note1Interact" parent="." instance=ExtResource("7_v25af")]
+modulate = Color(0.215902, 0.215902, 0.215902, 1)
+position = Vector2(852, 885)
+scale = Vector2(0.15, 0.15)
+
+[node name="DoorInteract" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_bf8cn")
+volume_db = 10.0
+
+[connection signal="input_event" from="DoorToBedroom" to="." method="_on_door_to_bedroom_input_event"]
+[connection signal="input_event" from="LookAtSafe" to="." method="_on_look_at_safe_input_event"]
+[connection signal="input_event" from="Note1Interact" to="Note1Interact" method="_on_input_event"]

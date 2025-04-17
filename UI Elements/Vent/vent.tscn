@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3 uid="uid://t3f314l7v15v"]
+
+[ext_resource type="Script" path="res://UI Elements/Vent/vent.gd" id="1_hsnu5"]
+[ext_resource type="PackedScene" uid="uid://bkmn204agii6v" path="res://UI Elements/Vent/screw.tscn" id="2_63bda"]
+[ext_resource type="Texture2D" uid="uid://ddctf8lhy5cgr" path="res://Assets/interactables/LivingRoom/VentGUI.PNG" id="3_11x2w"]
+[ext_resource type="Texture2D" uid="uid://dmj5i7rprhxyj" path="res://Assets/icons/close_gui.png" id="4_dltid"]
+[ext_resource type="StyleBox" uid="uid://cyp2uvm4y7osa" path="res://Assets/ButtonThemeOverride/focus.tres" id="4_wsn4u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrd4r"]
+size = Vector2(1378, 707)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdu65"]
+bg_color = Color(0, 0, 0, 0.784314)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m84uo"]
+bg_color = Color(0, 0, 0, 0.392157)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m785k"]
+bg_color = Color(0, 0, 0, 0.588235)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43p6n"]
+bg_color = Color(0, 0, 0, 0.196078)
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
+[node name="Vent" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hsnu5")
+
+[node name="VentLayer" type="Area2D" parent="."]
+position = Vector2(956, 532)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VentLayer"]
+position = Vector2(-5, -17.5)
+shape = SubResource("RectangleShape2D_jrd4r")
+
+[node name="Sprite2D" type="Sprite2D" parent="VentLayer"]
+position = Vector2(-4.00002, 3.05176e-05)
+texture = ExtResource("3_11x2w")
+
+[node name="Screws" type="Node2D" parent="."]
+
+[node name="Screw" parent="Screws" instance=ExtResource("2_63bda")]
+position = Vector2(333, 234)
+scale = Vector2(1, 1)
+
+[node name="Screw2" parent="Screws" instance=ExtResource("2_63bda")]
+position = Vector2(338, 790)
+scale = Vector2(1, 1)
+
+[node name="Screw3" parent="Screws" instance=ExtResource("2_63bda")]
+position = Vector2(1562, 241)
+scale = Vector2(1, 1)
+
+[node name="Screw4" parent="Screws" instance=ExtResource("2_63bda")]
+position = Vector2(1564, 788)
+scale = Vector2(1, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1717.0
+offset_top = 50.0
+offset_right = 1845.0
+offset_bottom = 178.0
+theme_override_styles/focus = ExtResource("4_wsn4u")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_cdu65")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m84uo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m785k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_43p6n")
+
+[node name="TextureRect" type="TextureRect" parent="Button"]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("4_dltid")
+
+[node name="TestNode" type="Node" parent="."]
+
+[connection signal="input_event" from="VentLayer" to="." method="_on_vent_layer_input_event"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvxwile1oyiag"]
+
+[ext_resource type="PackedScene" uid="uid://bmimgjmuokykb" path="res://Items/item.tscn" id="1_b53jw"]
+[ext_resource type="Texture2D" uid="uid://bdigldqi86odk" path="res://Assets/icons/Notes/note4.png" id="2_fimyl"]
+
+[node name="Note4Item" instance=ExtResource("1_b53jw")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 48.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_fimyl")
+item_enum = 10
+item_name = "note_4"

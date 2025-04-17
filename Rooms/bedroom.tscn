@@ -1,0 +1,165 @@
+[gd_scene load_steps=19 format=3 uid="uid://d2gr44af5j1gd"]
+
+[ext_resource type="Script" path="res://Rooms/bedroom.gd" id="1_0dsql"]
+[ext_resource type="Texture2D" uid="uid://dv8vkvoisv7g4" path="res://Assets/backgrounds/Level2BottomLayer.PNG" id="2_bub4k"]
+[ext_resource type="PackedScene" uid="uid://ckvj06f5w0bkl" path="res://Interactable/Tools/study_key_interact.tscn" id="3_oehap"]
+[ext_resource type="Texture2D" uid="uid://bcigeijmlh4hb" path="res://Assets/interactables/Bedroom/Door1.PNG" id="3_vqrln"]
+[ext_resource type="Texture2D" uid="uid://bb0o4m5rec1v6" path="res://Assets/interactables/Bedroom/Door2.PNG" id="4_8fbsd"]
+[ext_resource type="PackedScene" uid="uid://bfxtpwcfkdla4" path="res://Interactable/Gadgets/chrono_chrystal_interact.tscn" id="6_cppb5"]
+[ext_resource type="Texture2D" uid="uid://cun8311dws7sx" path="res://Assets/interactables/Bedroom/Painting.PNG" id="6_d5vo7"]
+[ext_resource type="Script" path="res://Rooms/move_painting.gd" id="6_eg7s5"]
+[ext_resource type="PackedScene" uid="uid://b4qo2h5nru81k" path="res://Interactable/Gadgets/paradox_resolver_unit_interact.tscn" id="9_xwior"]
+[ext_resource type="PackedScene" uid="uid://gdk0rars0t7v" path="res://Interactable/Notes/note_3_interact.tscn" id="10_trbke"]
+[ext_resource type="PackedScene" uid="uid://cbexvghe0b32" path="res://Interactable/Notes/note_4_interact.tscn" id="11_tkb0p"]
+[ext_resource type="AudioStream" uid="uid://bo2h73e1tcg6q" path="res://Assets/Audio/Door.mp3" id="12_sq8v4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_heyfo"]
+radius = 80.0
+height = 560.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbuxn"]
+size = Vector2(152, 408)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nug2"]
+size = Vector2(328, 244)
+
+[sub_resource type="Animation" id="Animation_nntc8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovePainting:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MovePainting:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0rckb"]
+resource_name = "fall"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovePainting:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MovePainting:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.8, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 5), Vector2(-5, 0), Vector2(3, -2), Vector2(-4, 3), Vector2(0, -2), Vector2(4, 2), Vector2(-4, -4), Vector2(0, 0), Vector2(0, 0), Vector2(0, 200)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h6mnu"]
+_data = {
+"RESET": SubResource("Animation_nntc8"),
+"fall": SubResource("Animation_0rckb")
+}
+
+[node name="Bedroom" type="Node2D"]
+script = ExtResource("1_0dsql")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(958, 542)
+texture = ExtResource("2_bub4k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="DoorToLivingRoom" type="Area2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="DoorToLivingRoom"]
+texture = ExtResource("3_vqrln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToLivingRoom"]
+position = Vector2(-846, 50)
+shape = SubResource("CapsuleShape2D_heyfo")
+
+[node name="DoorToStudyRoom" type="Area2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToStudyRoom"]
+position = Vector2(423, -102)
+shape = SubResource("RectangleShape2D_bbuxn")
+
+[node name="Sprite2D" type="Sprite2D" parent="DoorToStudyRoom"]
+texture = ExtResource("4_8fbsd")
+
+[node name="StudyKeyInteract" parent="." instance=ExtResource("3_oehap")]
+position = Vector2(960, 540)
+
+[node name="ChronoCrystalInteract" parent="." instance=ExtResource("6_cppb5")]
+position = Vector2(960, 540)
+monitoring = false
+
+[node name="ParadoxResolverUnitInteractible" parent="." instance=ExtResource("9_xwior")]
+position = Vector2(960, 540)
+
+[node name="Note3Interact" parent="." instance=ExtResource("10_trbke")]
+modulate = Color(0.273873, 0.273873, 0.273873, 1)
+position = Vector2(1258, 858)
+scale = Vector2(0.15, 0.15)
+
+[node name="Note4Interact" parent="." instance=ExtResource("11_tkb0p")]
+modulate = Color(0.703808, 0.703808, 0.703808, 1)
+position = Vector2(399, 280)
+scale = Vector2(0.15, 0.15)
+
+[node name="MovePainting" type="Area2D" parent="."]
+script = ExtResource("6_eg7s5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovePainting"]
+position = Vector2(473, 327)
+shape = SubResource("RectangleShape2D_3nug2")
+
+[node name="Sprite2D" type="Sprite2D" parent="MovePainting"]
+position = Vector2(960, 540)
+texture = ExtResource("6_d5vo7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MovePainting"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_h6mnu")
+}
+
+[node name="DoorInteract" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_sq8v4")
+volume_db = 10.0
+
+[connection signal="input_event" from="DoorToLivingRoom" to="." method="_on_door_to_living_room_input_event"]
+[connection signal="input_event" from="DoorToStudyRoom" to="." method="_on_door_to_study_room_input_event"]
+[connection signal="input_event" from="StudyKeyInteract" to="." method="_on_study_key_interactible_input_event"]
+[connection signal="input_event" from="Note3Interact" to="Note3Interact" method="_on_input_event"]
+[connection signal="input_event" from="Note4Interact" to="Note4Interact" method="_on_input_event"]
+[connection signal="input_event" from="MovePainting" to="MovePainting" method="_on_input_event"]
+[connection signal="animation_finished" from="MovePainting/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

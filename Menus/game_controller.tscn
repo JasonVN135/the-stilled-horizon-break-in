@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdwwd7c8ks0dt"]
+
+[ext_resource type="Script" path="res://Menus/game_controller.gd" id="1_aonxq"]
+[ext_resource type="PackedScene" uid="uid://4wn054tf760r" path="res://UI Elements/timer.tscn" id="2_5s8da"]
+[ext_resource type="PackedScene" uid="uid://d2gr44af5j1gd" path="res://Rooms/bedroom.tscn" id="3_6xh14"]
+[ext_resource type="PackedScene" uid="uid://1o3otxg142q1" path="res://UI Elements/inventory.tscn" id="3_vqsr1"]
+[ext_resource type="PackedScene" uid="uid://cik4xmgoq8823" path="res://Rooms/living_room.tscn" id="4_xefhf"]
+[ext_resource type="PackedScene" uid="uid://t3f314l7v15v" path="res://UI Elements/Vent/vent.tscn" id="5_i8v4u"]
+[ext_resource type="PackedScene" uid="uid://tk7ls535b5rt" path="res://Rooms/study_room.tscn" id="5_rxnlj"]
+[ext_resource type="PackedScene" uid="uid://dmg8llre333nt" path="res://UI Elements/Safe/safe.tscn" id="6_a74gw"]
+[ext_resource type="PackedScene" uid="uid://bv8hwfkwvtiot" path="res://Menus/pause_menu.tscn" id="6_vyj7g"]
+[ext_resource type="PackedScene" uid="uid://8k0lggtn6el0" path="res://UI Elements/gadget_counter.tscn" id="8_koum5"]
+
+[node name="GameController" type="Node" node_paths=PackedStringArray("world", "gui")]
+script = ExtResource("1_aonxq")
+world = NodePath("World2D")
+gui = NodePath("GUI")
+
+[node name="ChangeRoomTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="World2D" type="Node2D" parent="."]
+
+[node name="Bedroom" parent="World2D" instance=ExtResource("3_6xh14")]
+visible = false
+
+[node name="LivingRoom" parent="World2D" instance=ExtResource("4_xefhf")]
+
+[node name="StudyRoom" parent="World2D" instance=ExtResource("5_rxnlj")]
+visible = false
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Vent" parent="GUI" instance=ExtResource("5_i8v4u")]
+visible = false
+
+[node name="Safe" parent="GUI" instance=ExtResource("6_a74gw")]
+visible = false
+
+[node name="Timer" parent="." instance=ExtResource("2_5s8da")]
+offset_left = 544.0
+offset_top = 26.0
+offset_right = -530.0
+offset_bottom = -1006.0
+
+[node name="GadgetCounter" parent="." instance=ExtResource("8_koum5")]
+offset_left = 17.0
+offset_top = 19.0
+offset_right = 57.0
+offset_bottom = 59.0
+
+[node name="Inventory" parent="." instance=ExtResource("3_vqsr1")]
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_right = 64.0
+grow_vertical = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_vyj7g")]
+
+[connection signal="timeout" from="ChangeRoomTimer" to="." method="_on_change_room_timer_timeout"]

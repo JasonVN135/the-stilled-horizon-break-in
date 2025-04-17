@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfxtpwcfkdla4"]
+
+[ext_resource type="Script" path="res://Interactable/interactable.gd" id="1_a7qgw"]
+[ext_resource type="Texture2D" uid="uid://dj5adcnq6lgg4" path="res://Assets/Interactables/Bedroom/ChronoCrystal.PNG" id="2_ehi20"]
+[ext_resource type="PackedScene" uid="uid://d3u3tmtpj5d5k" path="res://Items/Gadgets/chrono_crystal_item.tscn" id="3_2xbrh"]
+
+[node name="ChronoCrystalInteractible" type="Area2D" node_paths=PackedStringArray("item")]
+script = ExtResource("1_a7qgw")
+item = NodePath("ChronoCrystalItem")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-490, -192)
+polygon = PackedVector2Array(-57, -63, 65, -66, 67, 55, -57, 55)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ehi20")
+
+[node name="ChronoCrystalItem" parent="." instance=ExtResource("3_2xbrh")]
+visible = false
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

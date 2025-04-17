@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://cik4xmgoq8823"]
+
+[ext_resource type="Script" path="res://Rooms/living_room.gd" id="1_p5i1o"]
+[ext_resource type="Texture2D" uid="uid://cccgsye2h6lbc" path="res://Assets/backgrounds/Level1BottomLayer.PNG" id="2_thmyp"]
+[ext_resource type="Texture2D" uid="uid://dbqpvbg78q7vv" path="res://Assets/interactables/LivingRoom/Door.PNG" id="3_sdf7h"]
+[ext_resource type="Texture2D" uid="uid://eyx771xsx74m" path="res://Assets/interactables/LivingRoom/Vent.PNG" id="4_oltop"]
+[ext_resource type="PackedScene" uid="uid://dvh7h4sv5xnd7" path="res://Interactable/Tools/screwdriver_interact.tscn" id="6_3y6xa"]
+[ext_resource type="PackedScene" uid="uid://cxoi381fm2u5j" path="res://Interactable/Gadgets/time_stream_modulator_interact.tscn" id="6_gr6o7"]
+[ext_resource type="PackedScene" uid="uid://bhnclalu1dmg1" path="res://Interactable/Notes/note_2_interact.tscn" id="7_118px"]
+[ext_resource type="AudioStream" uid="uid://bo2h73e1tcg6q" path="res://Assets/Audio/Door.mp3" id="8_2dm0l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmkgv"]
+size = Vector2(200, 576)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wei1g"]
+size = Vector2(200, 128)
+
+[node name="LivingRoom" type="Node2D"]
+script = ExtResource("1_p5i1o")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_thmyp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="ScrewdriverInteract" parent="." instance=ExtResource("6_3y6xa")]
+position = Vector2(960, 541)
+
+[node name="DoorToBedroom" type="Area2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToBedroom"]
+position = Vector2(828, 44)
+shape = SubResource("RectangleShape2D_dmkgv")
+
+[node name="Sprite2D" type="Sprite2D" parent="DoorToBedroom"]
+texture = ExtResource("3_sdf7h")
+
+[node name="TimeStreamModulatorInteract" parent="." instance=ExtResource("6_gr6o7")]
+position = Vector2(960, 540)
+
+[node name="LookAtVent" type="Area2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LookAtVent"]
+position = Vector2(812, -316)
+shape = SubResource("RectangleShape2D_wei1g")
+
+[node name="Sprite2D" type="Sprite2D" parent="LookAtVent"]
+texture = ExtResource("4_oltop")
+
+[node name="Note2Interact" parent="." instance=ExtResource("7_118px")]
+modulate = Color(0.427493, 0.427493, 0.427493, 1)
+position = Vector2(1403, 621)
+scale = Vector2(0.15, 0.15)
+
+[node name="DoorInteract" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_2dm0l")
+volume_db = 10.0
+
+[connection signal="input_event" from="DoorToBedroom" to="." method="_on_door_to_bedroom_input_event"]
+[connection signal="input_event" from="LookAtVent" to="." method="_on_look_at_vent_input_event"]
+[connection signal="input_event" from="Note2Interact" to="Note2Interact" method="_on_input_event"]

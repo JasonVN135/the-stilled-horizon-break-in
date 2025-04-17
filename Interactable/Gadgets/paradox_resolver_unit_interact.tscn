@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4qo2h5nru81k"]
+
+[ext_resource type="Script" path="res://Interactable/interactable.gd" id="1_x1a45"]
+[ext_resource type="Texture2D" uid="uid://7wyrdq7nuse5" path="res://Assets/Interactables/Bedroom/ParadoxResolverUnit.PNG" id="2_mu4mo"]
+[ext_resource type="PackedScene" uid="uid://ciu7pq6757qru" path="res://Items/Gadgets/paradox_resolver_unit_item.tscn" id="3_iqx6w"]
+
+[node name="ParadoxResolverUnitInteractible" type="Area2D" node_paths=PackedStringArray("item")]
+script = ExtResource("1_x1a45")
+item = NodePath("ParadoxResolverUnitItem")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-199.427, 517.061)
+scale = Vector2(0.864753, 0.497454)
+polygon = PackedVector2Array(-62, -63, 63, -64, 63, 64, -7.22437, 64, -64, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mu4mo")
+
+[node name="ParadoxResolverUnitItem" parent="." instance=ExtResource("3_iqx6w")]
+visible = false
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

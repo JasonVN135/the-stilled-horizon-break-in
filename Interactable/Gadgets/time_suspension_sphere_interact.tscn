@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://sn6i4oy70lko"]
+
+[ext_resource type="Script" path="res://Interactable/interactable.gd" id="1_vgach"]
+[ext_resource type="Texture2D" uid="uid://cwgeryh4ytywf" path="res://Assets/Interactables/StudyRoom/TimeSuspensionSphere.PNG" id="2_nxxv6"]
+[ext_resource type="PackedScene" uid="uid://hp0ppu4vt6y" path="res://Items/Gadgets/time_suspension_sphere_item.tscn" id="3_8rw0g"]
+
+[node name="TimeSuspensionSphereInteract" type="Area2D" node_paths=PackedStringArray("item")]
+script = ExtResource("1_vgach")
+item = NodePath("TimeSuspensionSphereItem")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(746.369, 171)
+scale = Vector2(0.738189, 0.682409)
+polygon = PackedVector2Array(-62, -63, 63, -64, 63, 64, -64, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nxxv6")
+
+[node name="TimeSuspensionSphereItem" parent="." instance=ExtResource("3_8rw0g")]
+visible = false
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

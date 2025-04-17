@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://gdk0rars0t7v"]
+
+[ext_resource type="PackedScene" uid="uid://kc5q2jnwhrnk" path="res://Interactable/interactable.tscn" id="1_b3i5d"]
+[ext_resource type="Texture2D" uid="uid://dyllxfwnqt76n" path="res://Assets/Icons/Notes/note3.png" id="2_ks1f1"]
+[ext_resource type="PackedScene" uid="uid://dh6umkeuridqq" path="res://Items/Notes/note_3_item.tscn" id="3_by71w"]
+
+[node name="Note3Interact" node_paths=PackedStringArray("item") instance=ExtResource("1_b3i5d")]
+item = NodePath("Note3Item")
+
+[node name="CollisionPolygon2D" parent="." index="0"]
+polygon = PackedVector2Array(-152, -128, 112, -120, 160, 120, -152, 120)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(5, 5)
+texture = ExtResource("2_ks1f1")
+
+[node name="Note3Item" parent="." index="2" instance=ExtResource("3_by71w")]
+texture = null

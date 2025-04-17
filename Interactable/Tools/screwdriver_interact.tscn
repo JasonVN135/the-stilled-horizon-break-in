@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvh7h4sv5xnd7"]
+
+[ext_resource type="Script" path="res://Interactable/interactable.gd" id="1_uqdk5"]
+[ext_resource type="Texture2D" uid="uid://dkqg8xx7nm7xh" path="res://Assets/Interactables/LivingRoom/Screwdriver.PNG" id="2_im00h"]
+[ext_resource type="PackedScene" uid="uid://cgn280ashcdko" path="res://Items/Tools/screwdriver_item.tscn" id="3_6cm5q"]
+
+[node name="ScrewdriverInteract" type="Area2D" node_paths=PackedStringArray("item")]
+script = ExtResource("1_uqdk5")
+item = NodePath("Screwdriver")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-504, 96)
+scale = Vector2(0.221122, 0.427319)
+polygon = PackedVector2Array(-62, -63, 63, -64, 63, 64, -64, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_im00h")
+
+[node name="Screwdriver" parent="." instance=ExtResource("3_6cm5q")]
+visible = false
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

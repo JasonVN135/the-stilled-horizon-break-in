@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2gr44af5j1gd"]
+
+[ext_resource type="Script" path="res://Rooms/bedroom.gd" id="1_0dsql"]
+[ext_resource type="Texture2D" uid="uid://dv8vkvoisv7g4" path="res://Assets/backgrounds/Level2BottomLayer.PNG" id="2_bub4k"]
+[ext_resource type="PackedScene" uid="uid://ckvj06f5w0bkl" path="res://Interactable/Tools/study_key_interact.tscn" id="3_oehap"]
+[ext_resource type="Texture2D" uid="uid://bcigeijmlh4hb" path="res://Assets/interactables/Bedroom/Door1.PNG" id="3_vqrln"]
+[ext_resource type="Texture2D" uid="uid://bb0o4m5rec1v6" path="res://Assets/interactables/Bedroom/Door2.PNG" id="4_8fbsd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_heyfo"]
+radius = 80.0
+height = 560.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbuxn"]
+size = Vector2(152, 408)
+
+[node name="Bedroom" type="Node2D"]
+script = ExtResource("1_0dsql")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_bub4k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="DoorToLivingRoom" type="Area2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="DoorToLivingRoom"]
+texture = ExtResource("3_vqrln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToLivingRoom"]
+position = Vector2(-846, 50)
+shape = SubResource("CapsuleShape2D_heyfo")
+
+[node name="DoorToStudyRoom" type="Area2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToStudyRoom"]
+position = Vector2(423, -102)
+shape = SubResource("RectangleShape2D_bbuxn")
+
+[node name="Sprite2D" type="Sprite2D" parent="DoorToStudyRoom"]
+texture = ExtResource("4_8fbsd")
+
+[node name="StudyKeyInteractible" parent="." instance=ExtResource("3_oehap")]
+position = Vector2(960, 540)
+
+[connection signal="input_event" from="DoorToLivingRoom" to="." method="_on_door_to_living_room_input_event"]
+[connection signal="input_event" from="DoorToStudyRoom" to="." method="_on_door_to_study_room_input_event"]
+[connection signal="input_event" from="StudyKeyInteractible" to="." method="_on_study_key_interactible_input_event"]

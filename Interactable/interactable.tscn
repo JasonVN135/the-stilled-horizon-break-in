@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://kc5q2jnwhrnk"]
+
+[ext_resource type="Texture2D" uid="uid://cdidl0edwkyc1" path="res://icon.svg" id="1_hjxr1"]
+[ext_resource type="Script" path="res://Interactable/interactable.gd" id="1_x4qha"]
+
+[node name="Interactable" type="Area2D"]
+script = ExtResource("1_x4qha")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-62, -63, 63, -64, 63, 64, -64, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hjxr1")

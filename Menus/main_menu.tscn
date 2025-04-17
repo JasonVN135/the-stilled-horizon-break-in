@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1cclt3j23i2b"]
+
+[ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_2ypoh"]
+[ext_resource type="Texture2D" uid="uid://7px2ryc3aks3" path="res://Assets/backgrounds/City.JPG" id="2_jrwvf"]
+[ext_resource type="FontFile" uid="uid://dtpxaob7o4osg" path="res://Assets/Xirod.otf" id="2_l78q0"]
+[ext_resource type="StyleBox" uid="uid://cyp2uvm4y7osa" path="res://Assets/ButtonThemeOverride/focus.tres" id="4_tss41"]
+[ext_resource type="StyleBox" uid="uid://cl75erglp700o" path="res://Assets/ButtonThemeOverride/hover_pressed.tres" id="5_u0hbp"]
+[ext_resource type="StyleBox" uid="uid://0onhjc301aup" path="res://Assets/ButtonThemeOverride/hover.tres" id="6_app84"]
+[ext_resource type="StyleBox" uid="uid://cacjfgonem3xt" path="res://Assets/ButtonThemeOverride/pressed.tres" id="7_1t4dd"]
+[ext_resource type="StyleBox" uid="uid://duo36goxfpmih" path="res://Assets/ButtonThemeOverride/normal.tres" id="8_871j4"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ypoh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jrwvf")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_top = 48.0
+offset_right = 219.0
+offset_bottom = 185.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_l78q0")
+theme_override_font_sizes/font_size = 48
+text = "The Stilled Horizon
+Break In"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = -330.0
+offset_right = 336.0
+offset_bottom = 330.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_l78q0")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/focus = ExtResource("4_tss41")
+theme_override_styles/hover_pressed = ExtResource("5_u0hbp")
+theme_override_styles/hover = ExtResource("6_app84")
+theme_override_styles/pressed = ExtResource("7_1t4dd")
+theme_override_styles/normal = ExtResource("8_871j4")
+text = "Play"
+
+[node name="StoryButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_l78q0")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/focus = ExtResource("4_tss41")
+theme_override_styles/hover_pressed = ExtResource("5_u0hbp")
+theme_override_styles/hover = ExtResource("6_app84")
+theme_override_styles/pressed = ExtResource("7_1t4dd")
+theme_override_styles/normal = ExtResource("8_871j4")
+text = "Story"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_l78q0")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/focus = ExtResource("4_tss41")
+theme_override_styles/hover_pressed = ExtResource("5_u0hbp")
+theme_override_styles/hover = ExtResource("6_app84")
+theme_override_styles/pressed = ExtResource("7_1t4dd")
+theme_override_styles/normal = ExtResource("8_871j4")
+text = "Quit
+"
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StoryButton" to="." method="_on_story_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

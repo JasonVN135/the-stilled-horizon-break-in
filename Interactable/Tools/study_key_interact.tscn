@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckvj06f5w0bkl"]
+
+[ext_resource type="PackedScene" uid="uid://kc5q2jnwhrnk" path="res://Interactable/interactable.tscn" id="1_5b43v"]
+[ext_resource type="PackedScene" uid="uid://cmtetsuto70ye" path="res://Items/Tools/study_key_item.tscn" id="2_n1ib4"]
+[ext_resource type="Texture2D" uid="uid://b0o05rinqf063" path="res://Assets/Interactables/Bedroom/Key.PNG" id="2_vp6x5"]
+
+[node name="Study Key" node_paths=PackedStringArray("item") instance=ExtResource("1_5b43v")]
+item = NodePath("Study Key")
+
+[node name="CollisionPolygon2D" parent="." index="0"]
+position = Vector2(582.325, 134.59)
+scale = Vector2(0.253954, 0.213105)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_vp6x5")
+
+[node name="Study Key" parent="." index="2" instance=ExtResource("2_n1ib4")]
+visible = false
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

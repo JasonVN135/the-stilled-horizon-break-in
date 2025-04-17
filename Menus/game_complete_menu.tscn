@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://vnqtucytuocw"]
+
+[ext_resource type="Script" path="res://game_complete_menu.gd" id="1_oxx8r"]
+[ext_resource type="Texture2D" uid="uid://yuv5uw6lkcha" path="res://Assets/backgrounds/PowerPlant.PNG" id="2_46etj"]
+[ext_resource type="FontFile" uid="uid://dtpxaob7o4osg" path="res://Assets/Xirod.otf" id="2_u7gfm"]
+[ext_resource type="StyleBox" uid="uid://cyp2uvm4y7osa" path="res://Assets/ButtonThemeOverride/focus.tres" id="4_ixkk4"]
+[ext_resource type="StyleBox" uid="uid://cl75erglp700o" path="res://Assets/ButtonThemeOverride/hover_pressed.tres" id="5_i6vou"]
+[ext_resource type="StyleBox" uid="uid://0onhjc301aup" path="res://Assets/ButtonThemeOverride/hover.tres" id="6_jue1g"]
+[ext_resource type="StyleBox" uid="uid://cacjfgonem3xt" path="res://Assets/ButtonThemeOverride/pressed.tres" id="7_8au2e"]
+[ext_resource type="StyleBox" uid="uid://duo36goxfpmih" path="res://Assets/ButtonThemeOverride/normal.tres" id="8_f0x3s"]
+
+[node name="GameCompleteMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oxx8r")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_46etj")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -211.0
+offset_top = 56.0
+offset_right = 211.0
+offset_bottom = 139.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_u7gfm")
+theme_override_font_sizes/font_size = 60
+text = "GAME COMPLETE"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -641.0
+offset_top = -121.0
+offset_right = 641.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_u7gfm")
+theme_override_font_sizes/font_size = 30
+text = "Jace snatched the final item he was searching
+ for and bolted for the exit. While sprinting, he shouted
+ to Frank and Aria that it was time to leave.
+
+Frank revved up the truck as Jace leapt into 
+the back. As they sped away, Jace caught a glimpse of
+ Draven arriving at the scene.
+
+Draven's face flushed a furious red as he comprehended 
+what had just happened. Jace knew this wasn't the end—
+not by a long shot.
+
+To Be Continued..."
+horizontal_alignment = 1
+
+[node name="Return Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -184.0
+offset_right = 512.0
+offset_bottom = -48.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_u7gfm")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = ExtResource("4_ixkk4")
+theme_override_styles/hover_pressed = ExtResource("5_i6vou")
+theme_override_styles/hover = ExtResource("6_jue1g")
+theme_override_styles/pressed = ExtResource("7_8au2e")
+theme_override_styles/normal = ExtResource("8_f0x3s")
+text = "Main Menu"
+
+[connection signal="pressed" from="Return Button" to="." method="_on_return_button_pressed"]
